@@ -102,6 +102,12 @@ h1 {
   letter-spacing: 0;
 }
 
+.home-title {
+  max-width: 760px;
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 1.08;
+}
+
 h2 {
   margin: 0;
   font-size: 34px;

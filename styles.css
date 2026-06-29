@@ -215,13 +215,14 @@ section {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   margin-top: 22px;
 }
 
 .contact-grid > div {
-  padding: 20px;
+  min-width: 0;
+  padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
@@ -232,7 +233,11 @@ section {
 .contact-grid span:not(.label) {
   display: block;
   margin-top: 6px;
+  font-size: 15px;
   font-weight: 900;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .timeline-grid {

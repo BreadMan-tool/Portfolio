@@ -13,6 +13,7 @@ PDF export, and Notion archive.
 - `docs/private-info-checklist.md`: things to remove or anonymize
 - `docs/project-inventory.md`: project notes and case-study source material
 - `docs/resume-draft.md`: resume-ready Korean career summary and bullets
+- `docs/cover-letter-draft.md`: Korean cover letter draft for job applications
 
 ## Workflow
 

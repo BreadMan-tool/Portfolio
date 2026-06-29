@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CatAway Case Study | Unity Client Developer Portfolio</title>
+    <meta name="description" content="CatAway Unity client case study covering live-service feature ownership, season pass renewal, competition content, SDK events, IAP, ads, and resource optimization.">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../print.css" media="print">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">Unity Client Developer</a>
+      <nav aria-label="Portfolio navigation">
+        <a href="../index.html#projects">Projects</a>
+        <a href="cataway.html">CatAway</a>
+        <a href="#work">Work</a>
+        <a href="#media">Media</a>
+        <a href="#evolution">Evolution</a>
+        <a href="#growth">Growth</a>
+        <a href="#stability">Stability</a>
+        <a href="#evidence">Evidence</a>
+        <a href="../portfolio-print.html">PDF</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="case-hero">
+        <p class="eyebrow">Case Study / Unity Live Game Client</p>
+        <h1>CatAway</h1>
+        <p class="lead">
+          코어 게임만 있던 프로젝트를 넘겨받아 2025년 8월부터 2026년 6월까지
+          Lucky Pass 제작, 게임플레이 기믹 추가, 리더보드, 경쟁 콘텐츠, 분석 이벤트,
+          IAP/광고/SDK, Crashlytics 기반 안정성 관리, 리소스 최적화와 라이브 QA를 담당했습니다.
+        </p>
+        <div class="case-meta">
+          <div>
+            <span class="label">Period</span>
+            <strong>2025.08 - 2026.06</strong>
+          </div>
+          <div>
+            <span class="label">Role</span>
+            <strong>Unity Client Developer</strong>
+          </div>
+          <div>
+            <span class="label">Focus</span>
+            <strong>Live Ops / UI / SDK</strong>
+          </div>
+          <div>
+            <span class="label">Evidence</span>
+            <strong>1,547 local commits</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Overview</p>
+          <h2>기존 라이브 게임을 인수해 기능을 확장하고 운영 가능한 구조로 정리했습니다.</h2>
+        </div>
+        <div class="split-copy">
+          <p>
+            CatAway는 코어 게임플레이만 있던 Unity 모바일 게임이었고, 제가 이 프로젝트에서
+            처음 맡은 큰 작업이 Lucky Pass 제작이었습니다. 이후 시즌패스 운영, 게임플레이 기믹,
+            리더보드, 경쟁 콘텐츠, 구매/광고, 외부 SDK, 분석 이벤트, 크래시 안정성 관리까지 라이브 게임으로 확장하는 작업을
+            이어서 담당했습니다.
+          </p>
+          <p>
+            초기에는 코드베이스를 익히며 빠르게 기능을 출시하는 데 집중했고, 콘텐츠가 늘어난 뒤에는
+            반복 작업을 줄이는 방향으로 구조를 정리했습니다. 보상 테이블과 시즌 리소스 분리,
+            스테이지 기믹 모델/에디터 대응, 클라우드 세이브, 콘텐츠 스케줄러, SDK 라우팅,
+            Crashlytics 기반 라이브 QA, 리소스 최적화 도구가 핵심입니다.
+          </p>
+        </div>
+      </section>
+
+      <section id="work" class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Key Work</p>
+          <h2>대표 작업</h2>
+        </div>
+
+        <div class="case-stack">
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>01</span>
+              <div>
+                <p class="project-period">2025.08 - 2026.06</p>
+                <h3>Lucky Pass / Season Pass</h3>
+              </div>
+            </div>
+            <p>
+              CatAway에서 처음 맡은 주요 작업으로 Lucky Pass를 제작했고, 이후 시즌별 리소스,
+              보상 테이블, 구매 상태, 프로필 보상, 정보 페이지, Spine 연출을 유지보수 가능한
+              구조로 정리했습니다.
+            </p>
+            <ul>
+              <li>`LuckyPassDataTableSO`의 날짜 기반 override 구조로 시즌 보상 테이블 교체 대응</li>
+              <li>`LuckyPassResourceSO`로 Lobby, Panel, Purchase, Info, Spine 리소스 그룹 분리</li>
+              <li>레벨업 흐름에서 5티어 단위 `cih_seasonpass_tier_reached` 이벤트 발사</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>02</span>
+              <div>
+                <p class="project-period">2025.10 - 2026.03</p>
+                <h3>Gameplay Gimmicks</h3>
+              </div>
+            </div>
+            <p>
+              코어 게임에 새로운 스테이지 기믹과 아이템 상호작용을 추가했습니다. 기믹은 런타임 모델,
+              오브젝트 연출, 스테이지 데이터 직렬화, StageEditor 입력/검증까지 함께 맞춰야 했습니다.
+            </p>
+            <ul>
+              <li>Rocat, Carrier, Permanent Hole, Dynamite, Mice, Count/Layer/Gate 계열 기믹 대응</li>
+              <li>`StageData`에 Cat/Box/Board 기믹 데이터를 확장하고 런타임 모델과 연결</li>
+              <li>Rocket 아이템의 타겟 판정, 분리된 박스 처리, 특수 기믹 충돌 로직 구현</li>
+              <li>StageEditor에서 Rocat, Mice, Key/Lock 등 짝이 필요한 기믹 검증 로직 추가</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>03</span>
+              <div>
+                <p class="project-period">2026.03 - 2026.05</p>
+                <h3>Competition Content</h3>
+              </div>
+            </div>
+            <p>
+              경쟁 콘텐츠는 상태, 타이머, 실패/재도전, 보상, UI 연출, 분석 이벤트가 함께 움직이는
+              라이브 콘텐츠였습니다. 기존 경쟁 구조를 정리하고 여러 변형 콘텐츠를 확장했습니다.
+            </p>
+            <ul>
+              <li>Streak Race의 start, step reached, reward claim 흐름 구현</li>
+              <li>UFO/Air Balloon Race의 race_num, step, current_wins 기반 진행/이탈 추적</li>
+              <li>WorldCup Race 브래킷, 승/패 결과 패널, 우승/탈락 이벤트 구현</li>
+              <li>Smelt Festival의 step reached, streak break, continue purchase 이벤트 구성</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>04</span>
+              <div>
+                <p class="project-period">2025.12 - 2026.05</p>
+                <h3>Leaderboard / Endless League Ranking</h3>
+              </div>
+            </div>
+            <p>
+              서버 리더보드 없이도 라이브 경쟁감을 만들 수 있도록 주간 랭킹, 월드/국가 랭킹,
+              가상 유저 풀, 오프라인 경과 시뮬레이션, Endless League 메달 랭킹을 구성했습니다.
+            </p>
+            <ul>
+              <li>20,000명 규모의 가상 풀과 상위 1,000명 노출 리스트 구성</li>
+              <li>닉네임 중복 제거, 국가 분포, 아바타/프레임, 주간 더미 성장률 처리</li>
+              <li>스테이지와 메달 수를 함께 사용해 World/Country/Weekly 탭 랭킹 계산</li>
+              <li>12개 아이템 풀링과 플레이어 고정 행으로 긴 리스트 UI 성능과 가독성 개선</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>05</span>
+              <div>
+                <p class="project-period">2026.03 - 2026.05</p>
+                <h3>Analytics-Ready Event Architecture</h3>
+              </div>
+            </div>
+            <p>
+              Firebase, ThinkingData, Singular, GameAnalytics 이벤트를 기능 코드에 흩뿌리지 않고
+              공통 라우터에서 관리했습니다. 기능 코드는 콘텐츠 상태 변화만 명확히 호출하고,
+              SDK별 발사 대상은 `TrackNetwork` 플래그로 선택합니다.
+            </p>
+            <ul>
+              <li>`EventDef`로 이벤트명 상수화</li>
+              <li>`EventManager.Track`으로 Firebase, ThinkingData, Singular, GameAnalytics 라우팅</li>
+              <li>Firebase custom dimension 호환을 위해 파라미터 string 정규화</li>
+              <li>GameAnalytics wrapper 제약에 맞춘 단일 파라미터 전송 처리</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>06</span>
+              <div>
+                <p class="project-period">2026.04 - 2026.05</p>
+                <h3>Crash Stability / Live QA</h3>
+              </div>
+            </div>
+            <p>
+              Firebase Crashlytics로 비정상 종료가 발생하지 않은 사용자 비율을 확인하며 라이브 빌드를
+              운영했습니다. 2026년 4월 1일부터 5월 21일까지의 확인 구간에서는 대부분 95% 이상을
+              유지했고, 특정 빌드에서 하락한 구간도 원인 추적과 후속 빌드 수정으로 회복했습니다.
+            </p>
+            <ul>
+              <li>Crash-free users 지표를 기준으로 빌드별 안정성 변화를 확인</li>
+              <li>하락 구간 발생 시 Crashlytics 이슈, 재현 조건, 최근 변경사항을 함께 추적</li>
+              <li>불명확한 크래시는 여러 빌드에 걸쳐 로그와 재현 경로를 보강하며 수정</li>
+              <li>기간, 기준 지표, 하락 구간, 후속 빌드 대응 방식까지 함께 기록</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>07</span>
+              <div>
+                <p class="project-period">2026.01 - 2026.06</p>
+                <h3>IAP / Ads / External SDK</h3>
+              </div>
+            </div>
+            <p>
+              구매 완료, 상품 노출, 광고 보상, 외부 SDK 연동과 빌드 설정을 맡았습니다.
+              구매 흐름은 단순 버튼 콜백이 아니라 product, transaction, currency, first-pay,
+              stage context를 함께 남기는 상태 기반 처리로 정리했습니다.
+            </p>
+            <ul>
+              <li>구매 완료 시 purchase info 저장과 `te_payment` 이벤트 발사</li>
+              <li>SKU와 스테이지 정보를 Firebase 이벤트로 남겨 구매 시점 맥락 추적</li>
+              <li>ESI SDK 설치, 빌드 세팅, 기존 3rd-party SDK 정리</li>
+              <li>IAP listener, SKU, spend tracking, UI prefab 업데이트 대응</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>08</span>
+              <div>
+                <p class="project-period">2026.05</p>
+                <h3>Resource Optimizer</h3>
+              </div>
+            </div>
+            <p>
+              라이브 프로젝트가 커지면서 텍스처, 아틀라스, Addressables, Spine 리소스를
+              반복적으로 확인할 수 있는 Unity Editor 도구를 만들고 리소스 정리를 진행했습니다.
+            </p>
+            <ul>
+              <li>`Tools / Resource Optimizer` EditorWindow 구성</li>
+              <li>Overview, Textures, Atlases, Bulk Edit, Unused, Duplicate, Addressables, Spine 탭 제공</li>
+              <li>스캔 대상 선택, CSV export, 선택 텍스처 관리 기능 구현</li>
+              <li>중복 리소스, 알파/아틀라스, Spine, ASTC/ETC, Addressables 정리 수행</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>09</span>
+              <div>
+                <p class="project-period">2026.05 - 2026.06</p>
+                <h3>Content Scheduler</h3>
+              </div>
+            </div>
+            <p>
+              라이브 콘텐츠가 한두 개에서 여러 개로 늘어나면서 각 콘텐츠의 활성 기간, 컨셉, 리셋 시각을
+              개별 코드로 관리하기 어려워졌습니다. 콘텐츠별 스케줄과 컨셉을 ScriptableObject로 모으고,
+              커스텀 Inspector에서 반복 주기와 요일, UTC 리셋 시간을 조정할 수 있게 만들었습니다.
+            </p>
+            <ul>
+              <li>Competition, SkyCatsle, UFORace, MysteryGem, MeowChef, PuzzleBreak 등 콘텐츠 스케줄 통합</li>
+              <li>Daily, Weekly, BiWeekly, Monthly, SemiWeekly 반복 주기와 요일 flag 지원</li>
+              <li>컨셉 key와 활성 요일을 분리해 이벤트 테마와 리소스 교체 흐름을 데이터화</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>10</span>
+              <div>
+                <p class="project-period">2026.05 - 2026.06</p>
+                <h3>Platform Cloud Save</h3>
+              </div>
+            </div>
+            <p>
+              유저 데이터 유실 이슈를 줄이기 위해 Android는 Google Play Games Services, iOS는 Game Center 기반
+              클라우드 저장 흐름을 구성했습니다. 로컬/클라우드 데이터를 비교하기 위한 SaveTick을 두고,
+              인증, 저장, 로드, 클라우드 동기화, 충돌 처리와 타임아웃 방어를 함께 넣었습니다.
+            </p>
+            <ul>
+              <li>GPGS SavedGame과 Game Center Saved Game을 플랫폼별 authenticator로 분리</li>
+              <li>로컬/클라우드 stage와 SaveTick 비교로 최신 데이터 판별</li>
+              <li>콜백 지연, 중복 세이브, JSON 파싱 실패, 타임아웃에 대한 방어 로직 추가</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>11</span>
+              <div>
+                <p class="project-period">2026.06</p>
+                <h3>PuzzleBreak Content</h3>
+              </div>
+            </div>
+            <p>
+              후반부에 만든 PuzzleBreak는 CatAway에서 쌓은 콘텐츠 제작 경험을 가장 많이 반영한 작업입니다.
+              기간형 이벤트 상태, 퍼즐 조각 수집, 셀 배치, 퍼즐별 보상, 강제 정산, 종료 후 표시 조건,
+              분석 이벤트와 UI 연출을 하나의 콘텐츠 흐름으로 구성했습니다.
+            </p>
+            <ul>
+              <li>퍼즐별 셀 배치를 64bit bitmask로 저장해 진행 상태를 가볍게 관리</li>
+              <li>스케줄 종료 후 남은 조각 정산, 보상 수령 여부, 종료 dismiss 상태 처리</li>
+              <li>ConfigSO와 Editor로 퍼즐 크기, 배경, 컨셉, 보상 조합을 데이터화</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="media" class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Live Content Screens</p>
+          <h2>Season Pass, competition content, missions, and SDK reward popups</h2>
+        </div>
+        <div class="media-grid">
+          <figure>
+            <img src="../assets/screenshots/cataway/luckypass.png" alt="CatAway Lucky Pass reward track screen">
+            <figcaption>Lucky Pass</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/screenshots/cataway/lava-race-panel.png" alt="CatAway Lava Race competition panel">
+            <figcaption>Lava Race</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/screenshots/cataway/lava-chase-matchmaking.png" alt="CatAway Lava Chase matchmaking popup">
+            <figcaption>Lava Chase</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/screenshots/cataway/skycatsle.png" alt="CatAway Sky Cat Castle event screen">
+            <figcaption>Sky Cat Castle</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/screenshots/cataway/mystery-gem.png" alt="CatAway Mystery Gem mission screen">
+            <figcaption>Mystery Gem</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/screenshots/cataway/freecash-sdk-popup.png" alt="CatAway Free Cash SDK reward popup">
+            <figcaption>FreeCash Reward</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="evolution" class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Feature Evolution</p>
+          <h2>기존 기능을 운영 가능한 구조로 발전시켰습니다.</h2>
+          <p class="section-lead">
+            CatAway 작업의 강점은 신규 기능 추가뿐 아니라, 한 번 만든 기능을 라이브 운영 중 반복 수정하면서
+            데이터 구조, UI 성능, 리소스 교체, 이벤트 추적까지 계속 개선한 점입니다.
+          </p>
+        </div>
+        <div class="case-grid">
+          <article>
+            <h3>Leaderboard</h3>
+            <p>
+              Prefs, Manager, UI item/podium 구조로 시작해 주간 랭킹, 월드/국가 랭킹,
+              가상 유저 시뮬레이션, 스크롤 최적화, Endless League 메달 랭킹까지 확장했습니다.
+              이후 닉네임 중복, 캐시, 프리팹 구조를 정리하며 라이브 운영에 맞게 안정화했습니다.
+            </p>
+          </article>
+          <article>
+            <h3>Design Tradeoff</h3>
+            <p>
+              장점은 서버 없이도 빠르게 경쟁감을 만들고, 오프라인 경과와 주간 리셋을 클라이언트에서 안정적으로 처리할 수 있다는 점입니다.
+              단점은 진짜 글로벌 경쟁 검증에는 한계가 있어, 포트폴리오에서는 서버 랭킹이 아니라 클라이언트형 라이브 콘텐츠로 설명합니다.
+            </p>
+          </article>
+          <article>
+            <h3>Season Pass</h3>
+            <p>
+              Lucky Pass 제작 후 시즌별 운영이 반복되면서 보상 테이블 override, Addressables 기반 리소스 그룹,
+              정보 페이지, Spine 연출로 확장했습니다. 새 시즌 추가 시 코드 수정보다 데이터/리소스 교체 중심으로 대응할 수 있게 만들었습니다.
+            </p>
+          </article>
+          <article>
+            <h3>Competition</h3>
+            <p>
+              기존 경쟁 콘텐츠를 Streak Race, UFO/Air Balloon, WorldCup, Smelt Festival처럼 변형 가능한 구조로 확장했습니다.
+              상태, 타이머, 실패/재도전, 보상, UI 연출, 이벤트 발사를 같은 운영 흐름으로 맞췄습니다.
+            </p>
+          </article>
+          <article>
+            <h3>Store / Package</h3>
+            <p>
+              기간형 상품과 반복 노출 상품이 늘어나면서 PackageManager에서 노출 기간, 인터벌 판매, 구매 상태,
+              남은 시간 문구, IAP 조건을 한 곳에서 판단하도록 정리했습니다.
+            </p>
+          </article>
+          <article>
+            <h3>Resource Workflow</h3>
+            <p>
+              반복적인 리소스 점검을 Unity Editor 도구로 옮겼습니다. 텍스처, 아틀라스, Addressables, Spine,
+              중복/미사용 리소스를 탭 단위로 확인해 라이브 빌드 전 정리 비용을 낮췄습니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="growth" class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Development Growth</p>
+          <h2>빠른 기능 출시에서 운영 가능한 구조와 제작 방식으로 확장했습니다.</h2>
+        </div>
+        <div class="case-grid">
+          <article>
+            <h3>Ramp-Up</h3>
+            <p>
+              처음에는 기존 코드에 익숙해지는 시간이 필요했기 때문에, Lucky Pass와 기믹 작업을 만들며
+              런타임 모델, UI 패널, Prefs, 리소스, StageEditor 흐름을 빠르게 따라갔습니다.
+              이후 같은 패턴이 반복되는 지점을 찾아 테이블, SO, 매니저, Editor 도구로 정리했습니다.
+            </p>
+          </article>
+          <article>
+            <h3>Content Scale</h3>
+            <p>
+              콘텐츠가 늘어나면서 하나씩 직접 관리하는 방식의 한계가 생겼습니다. 그래서 콘텐츠 스케줄러,
+              공통 타이머, 컨셉 key, 보상/상태 흐름을 만들고, 라이브 콘텐츠가 같은 기준으로 열리고 닫히도록 정리했습니다.
+            </p>
+          </article>
+          <article>
+            <h3>Presentation Polish</h3>
+            <p>
+              콘텐츠 연출이 아쉽다는 피드백을 받은 뒤에는 단순 기능 완료에서 멈추지 않고, 보상 등장,
+              매칭, 정산, 진행 단계, 아이템 이동, 팝업 전환이 더 명확하게 보이도록 DOTween과 UI 상태 전환을 다듬었습니다.
+            </p>
+          </article>
+          <article>
+            <h3>AI-Assisted Workflow</h3>
+            <p>
+              전담 멘토가 없는 1인 개발 환경에서 AI를 기술 검토 파트너처럼 사용했습니다. 영어 SDK 문서 해석,
+              외부 SDK 연동 순서 정리, 버그 발생 지점 가설화, UI 연출 구현 아이디어를 먼저 검토한 뒤
+              실제 코드베이스 컨벤션에 맞춰 적용했습니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="stability" class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Stability Metric</p>
+          <h2>Crash-free users를 기준으로 라이브 빌드 안정성을 관리했습니다.</h2>
+          <p class="section-lead">
+            2026년 4월 1일 - 5월 21일 확인 구간에서 CatAway는 대부분 95% 이상의 crash-free users를 유지했습니다.
+            후반부 하락 구간은 인수인계와 빌드 변경이 겹친 시점에 발생했으며, 이후 원인 추적과 수정 빌드로 회복했습니다.
+          </p>
+        </div>
+        <div class="metrics-list">
+          <div>
+            <h3>운영 기준</h3>
+            <p>
+              단일 크래시 수치보다 버전별 추세, 신규 이슈 발생 시점, 최근 변경사항과의 연결을 우선 확인했습니다.
+              안정성은 항상 95% 이상을 목표로 보고, 하락 시 다음 빌드에서 회복시키는 것을 기준으로 삼았습니다.
+            </p>
+          </div>
+          <div>
+            <h3>대응 방식</h3>
+            <p>
+              Crashlytics 이슈, 재현 가능성, 디바이스/OS 분포, 직전 기능 변경을 함께 확인했습니다.
+              바로 원인이 드러나지 않는 문제는 로그와 방어 코드를 추가한 빌드를 반복하며 재현 범위를 줄였습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="evidence" class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Implementation Scope</p>
+          <h2>구현 범위</h2>
+        </div>
+        <div class="evidence-grid">
+          <article>
+            <h3>Season Pass</h3>
+            <p>LuckyPass manager, reward tables, seasonal resource groups, purchase state, info page, Spine presentation</p>
+          </article>
+          <article>
+            <h3>Gameplay Gimmicks</h3>
+            <p>StageData expansion, Rocat, Carrier, Permanent Hole, Dynamite, Mice, Rocket item interactions</p>
+          </article>
+          <article>
+            <h3>Competition</h3>
+            <p>Streak Race, UFO/Air Balloon, WorldCup, Smelt Festival state flow, reward flow, UI presentation</p>
+          </article>
+          <article>
+            <h3>Leaderboard</h3>
+            <p>Weekly, World, Country tabs, virtual user pool, offline simulation, pooled list UI, Endless League medal ranking</p>
+          </article>
+          <article>
+            <h3>Analytics / SDK</h3>
+            <p>Firebase, ThinkingData, Singular, GameAnalytics routing, event constants, parameter normalization</p>
+          </article>
+          <article>
+            <h3>Cloud Save</h3>
+            <p>GPGS SavedGame, Game Center save, SaveTick comparison, conflict handling, timeout guards</p>
+          </article>
+          <article>
+            <h3>Content Scheduler</h3>
+            <p>ContentScheduleConfigSO, custom inspector, weekly/biweekly/semiweekly cycles, concept key rotation</p>
+          </article>
+          <article>
+            <h3>PuzzleBreak</h3>
+            <p>Puzzle pieces, bitmask cell progress, cycle reset, forced settlement, reward claim state, config editor</p>
+          </article>
+          <article>
+            <h3>Crash Stability</h3>
+            <p>Crashlytics, crash-free users, 2026.04.01 - 2026.05.21, 95%+ operating target</p>
+          </article>
+          <article>
+            <h3>IAP / Ads</h3>
+            <p>Purchase completion, SKU sync, product impression tracking, ad reward flow, external SDK build settings</p>
+          </article>
+          <article>
+            <h3>Optimization</h3>
+            <p>Unity Editor resource optimizer for textures, atlases, Addressables, Spine, unused and duplicate assets</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">What This Shows</p>
+          <h2>Unity 클라이언트 개발자로서 보여주는 역량</h2>
+        </div>
+        <div class="impact-list">
+          <p>기존 코드베이스를 인수해 라이브 유저 데이터를 유지하면서 기능을 확장할 수 있습니다.</p>
+          <p>게임플레이 기믹, UI, 보상, 구매, 이벤트, 리소스, SDK처럼 서로 얽힌 클라이언트 작업을 하나의 운영 흐름으로 연결할 수 있습니다.</p>
+          <p>처음 보는 SDK나 불명확한 버그도 문서 해석, 가설 정리, 로그 보강, 후속 빌드 수정으로 끝까지 해결할 수 있습니다.</p>
+          <p>Crashlytics 같은 운영 지표를 기능 개발과 분리하지 않고, 빌드 안정성 확인과 빠른 수정 사이클에 연결할 수 있습니다.</p>
+          <p>매출 숫자에 기대지 않고도, 클라이언트가 어떤 방식으로 운영 지표를 만들고 검증하는지 설명할 수 있습니다.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

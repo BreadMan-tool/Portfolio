@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jo Younghoon Portfolio PDF</title>
+    <meta name="description" content="Printable portfolio summary for Jo Younghoon, Unity client developer.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="print.css" media="print">
+  </head>
+  <body class="print-summary-page">
+    <header class="topbar">
+      <a class="brand" href="index.html">Unity Client Developer</a>
+      <nav aria-label="Portfolio navigation">
+        <a href="index.html">Home</a>
+        <a href="projects/cataway.html">CatAway</a>
+        <a href="projects/toycommando.html">Toy Commando</a>
+        <a href="projects/minecat.html">MineCat</a>
+        <a href="javascript:window.print()">Print / Save PDF</a>
+      </nav>
+    </header>
+
+    <main class="print-main">
+      <section class="print-cover">
+        <p class="eyebrow">Unity Client Developer Portfolio</p>
+        <h1>조영훈</h1>
+        <p class="lead">
+          라이브 모바일 게임의 기능 출시, UI, SDK, 운영 구조를 책임지는 Unity 클라이언트 개발자입니다.
+          시즌패스, 경쟁 콘텐츠, 클라우드 세이브, IAP/광고, 분석 이벤트, 리소스 최적화와 구조 개선 경험이 있습니다.
+        </p>
+        <div class="contact-strip">
+          <span>조영훈</span>
+          <a href="mailto:breadmore033@gmail.com">breadmore033@gmail.com</a>
+          <a href="https://github.com/breadmore">github.com/breadmore</a>
+          <span>Web Portfolio / PDF Summary</span>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Core Strengths</p>
+          <h2>주요 역량</h2>
+        </div>
+        <div class="pill-grid">
+          <span>Unity C#</span>
+          <span>Mobile Game UI</span>
+          <span>Live-Service Features</span>
+          <span>Season Pass / Rewards</span>
+          <span>Leaderboard / Competition</span>
+          <span>IAP / Ads</span>
+          <span>Firebase / GameAnalytics / Singular</span>
+          <span>Crashlytics Stability</span>
+          <span>GPGS / Game Center Cloud Save</span>
+          <span>ScriptableObject Data</span>
+          <span>VContainer</span>
+          <span>Breadmore Core</span>
+        </div>
+      </section>
+
+      <section class="case-section print-project">
+        <div class="section-heading">
+          <p class="eyebrow">2025.08 - 2026.06 / Unity Live Game Client</p>
+          <h2>CatAway</h2>
+        </div>
+        <div class="split-copy">
+          <p>
+            코어 게임만 있던 프로젝트를 넘겨받아 Lucky Pass 제작, 게임플레이 기믹,
+            리더보드, 경쟁 콘텐츠, SDK/분석 이벤트, IAP/광고/패키지, 클라우드 세이브,
+            Crashlytics 기반 안정성 관리와 리소스 최적화까지 담당했습니다.
+          </p>
+          <p>
+            초기에는 코드베이스 학습과 빠른 기능 출시를 우선했고, 콘텐츠가 늘어난 뒤에는
+            Content Scheduler, Resource Optimizer, 플랫폼별 Cloud Save, PuzzleBreak 같은 구조화된 기능으로 확장했습니다.
+          </p>
+        </div>
+        <div class="evidence-grid">
+          <article>
+            <h3>Live Content</h3>
+            <p>Lucky Pass, competition content, leaderboard, PuzzleBreak, content schedule, reward flow</p>
+          </article>
+          <article>
+            <h3>SDK / Analytics</h3>
+            <p>Firebase, ThinkingData, Singular, GameAnalytics routing, event constants, parameter normalization</p>
+          </article>
+          <article>
+            <h3>Stability</h3>
+            <p>Crash-free users 95%+ target, Crashlytics issue triage, follow-up build recovery</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section print-project">
+        <div class="section-heading">
+          <p class="eyebrow">2026.06 - Present / Unity Lobby Systems</p>
+          <h2>Toy Commando</h2>
+        </div>
+        <div class="split-copy">
+          <p>
+            기존 로비 구현을 인수해 VContainer 기반 컨벤션에 맞게 정리했습니다.
+            상점 상품 버튼, ScriptableObject 상품 데이터, 튜토리얼 플로우, Red Dot,
+            전설 뽑기와 월간 패스 UI를 로비 스코프의 서비스와 VM 흐름에 맞춰 재구성했습니다.
+          </p>
+          <p>
+            다른 작업자의 코드를 기능 단위로 탐색하고, VContainer의 LifetimeScope,
+            service/VM 주입, popup resolver 흐름을 학습하며 기존 동작을 유지한 채 구조를 정리했습니다.
+          </p>
+        </div>
+        <div class="evidence-grid">
+          <article>
+            <h3>Shop Refactor</h3>
+            <p>Purchase card base, soft/box/gacha/monthly pass product buttons, SO product data</p>
+          </article>
+          <article>
+            <h3>Lobby Systems</h3>
+            <p>Tutorial flow, red dot providers, VContainer registration, scoped resolver usage</p>
+          </article>
+          <article>
+            <h3>Live Products</h3>
+            <p>Legendary gacha, monthly pass, IAP price sync, daily claim, pity count, selectable rewards</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section print-project">
+        <div class="section-heading">
+          <p class="eyebrow">Project Start - Present / Unity Client from Scratch</p>
+          <h2>MineCat</h2>
+        </div>
+        <div class="split-copy">
+          <p>
+            프로젝트 생성부터 클라이언트 구조, 게임플레이, UI/HUD, 데이터 테이블,
+            오브젝트 풀, 투사체 시스템, 상점/IAP까지 직접 개발했습니다.
+          </p>
+          <p>
+            CatAway에서 반복적으로 만들었던 라이브 기능 경험을 Breadmore Core 기반 구조로 옮기고,
+            SO/CSV 데이터, ProjectileSystem, SpatialTargetGrid, Object Pool, prefab validation을 구축했습니다.
+          </p>
+        </div>
+        <div class="evidence-grid">
+          <article>
+            <h3>Breadmore Core</h3>
+            <p>BootStep, Save, Resource, IAP, UI, Localization, Analytics, Ads package foundation</p>
+          </article>
+          <article>
+            <h3>Gameplay</h3>
+            <p>MVC model/view, ProjectileSystem, SpatialTargetGrid, weapon VFX, object pooling</p>
+          </article>
+          <article>
+            <h3>Data / Store</h3>
+            <p>CSV tables, reward database, shop catalog, Unity Purchasing provider, dummy IAP provider</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Work Style</p>
+          <h2>작업 방식</h2>
+        </div>
+        <div class="impact-list">
+          <p>기존 코드베이스를 인수해 빠르게 기능을 출시하고, 이후 반복되는 작업을 데이터/도구/공통 구조로 정리합니다.</p>
+          <p>1인 개발 환경에서 AI를 코드 탐색, SDK 문서 해석, 버그 가설 정리, UI 연출 아이디어 검토에 활용합니다.</p>
+          <p>매출 숫자보다 클라이언트 구조, 이벤트 설계, 안정성 대응, 빌드 후 회복 사이클로 개발 기여도를 설명합니다.</p>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Background</p>
+          <h2>경력 / 교육 / 수상</h2>
+        </div>
+        <div class="timeline-grid">
+          <article>
+            <p class="project-period">2025.07 - Present</p>
+            <h3>ActionFit</h3>
+            <p>Unity 클라이언트 개발. CatAway 라이브 콘텐츠, Toy Commando 로비 리팩토링, MineCat 직접 개발.</p>
+          </article>
+          <article>
+            <p class="project-period">2024.03 - 2024.06</p>
+            <h3>HaeGin Internship</h3>
+            <p>Unity 게임 개발 인턴십. 2D 슈팅 게임 팀 프로젝트 `Planet Buster` 진행.</p>
+          </article>
+          <article>
+            <p class="project-period">2023.03 - 2023.11</p>
+            <h3>SBS Game Academy</h3>
+            <p>Unity / C# 기반 2D, 3D 게임 개발 과정 학습과 프로젝트 진행.</p>
+          </article>
+          <article>
+            <p class="project-period">2016.03 - 2024.02</p>
+            <h3>Korea University Sejong</h3>
+            <p>컴퓨터정보학과 졸업. 한국애니메이션고등학교 게임제작과 졸업.</p>
+          </article>
+          <article>
+            <p class="project-period">2020</p>
+            <h3>Awards / Research</h3>
+            <p>KETI 제4차 개발자 대회 장려상, 한국통신학회 동계 학술대회 학부 우수논문.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

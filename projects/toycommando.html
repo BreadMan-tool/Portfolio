@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Toy Commando Case Study | Unity Client Developer Portfolio</title>
+    <meta name="description" content="Toy Commando Unity client case study covering lobby refactoring, VContainer conventions, shop product UI, ScriptableObject data, tutorial flow, red dot system, and legendary gacha.">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../print.css" media="print">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">Unity Client Developer</a>
+      <nav aria-label="Portfolio navigation">
+        <a href="../index.html#projects">Projects</a>
+        <a href="cataway.html">CatAway</a>
+        <a href="toycommando.html">Toy Commando</a>
+        <a href="#work">Work</a>
+        <a href="#media">Media</a>
+        <a href="#evolution">Evolution</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#scope">Scope</a>
+        <a href="../portfolio-print.html">PDF</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="case-hero">
+        <p class="eyebrow">Case Study / Unity Lobby Systems</p>
+        <h1>Toy Commando</h1>
+        <p class="lead">
+          기존 로비 구현을 인수한 뒤 VContainer 기반 프로젝트 컨벤션에 맞춰 상점 상품 버튼,
+          ScriptableObject 상품 데이터, 튜토리얼 플로우, Red Dot, 월간 패스와 전설 뽑기 UI를 정리했습니다.
+        </p>
+        <div class="case-meta">
+          <div>
+            <span class="label">Period</span>
+            <strong>2026.06 - Present</strong>
+          </div>
+          <div>
+            <span class="label">Role</span>
+            <strong>Unity Client Developer</strong>
+          </div>
+          <div>
+            <span class="label">Focus</span>
+            <strong>Lobby / UI / Refactoring</strong>
+          </div>
+          <div>
+            <span class="label">Architecture</span>
+            <strong>VContainer / SO / VM</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Overview</p>
+          <h2>기존 로비 코드를 프로젝트 아키텍처에 맞춰 다시 배치했습니다.</h2>
+        </div>
+        <div class="split-copy">
+          <p>
+            Toy Commando는 기존 프로젝트의 로비 작업을 이어받은 케이스입니다. 저는 로비 상점,
+            상품 버튼, 튜토리얼, 레드닷, 가챠/월간 패스 기능을 기존 코드 컨벤션과
+            VContainer 흐름에 맞게 정리했습니다.
+          </p>
+          <p>
+            핵심은 기능을 새로 붙이는 것보다, 화면 프리팹에 흩어진 로직을 서비스, ViewModel,
+            ScriptableObject 데이터, 재사용 가능한 UI 컴포넌트로 분리하는 것이었습니다.
+            로비 스코프에서 필요한 의존성을 주입받고, 상품/보상/제한/알림 상태를 같은 패턴으로 처리했습니다.
+          </p>
+        </div>
+      </section>
+
+      <section id="work" class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Key Work</p>
+          <h2>대표 작업</h2>
+        </div>
+
+        <div class="case-stack">
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>01</span>
+              <div>
+                <p class="project-period">2026.06</p>
+                <h3>Lobby Scope Refactoring</h3>
+              </div>
+            </div>
+            <p>
+              로비 탭, 상점, 팝업, 튜토리얼이 같은 화면에서 얽혀 있었기 때문에 먼저 로비 스코프의
+              등록 흐름을 정리했습니다. 기능별 서비스와 VM을 `LobbyLifetimeScope`에 등록하고,
+              UI는 필요한 의존성을 주입받아 동작하도록 맞췄습니다.
+            </p>
+            <ul>
+              <li>`LobbyHudVM`, `LobbyNavVM`, `LobbyShopVM`, `LobbyWeaponVM`, `LobbyChaVM` 등 로비 VM 흐름 유지</li>
+              <li>`ShopRandomProductService`, `SoftRandomPoolService`, `LegendaryGachaService`, `RedDotService`를 로비 스코프로 사용</li>
+              <li>팝업과 자식 UI가 로비 스코프 의존성을 받을 수 있도록 resolver 전달 경로 정리</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>02</span>
+              <div>
+                <p class="project-period">2026.06</p>
+                <h3>Shop Product Button Refactor</h3>
+              </div>
+            </div>
+            <p>
+              하나의 상품 버튼에 몰려 있던 구매, 표시, 가격, 매진, 보상 지급 로직을 상품 종류별 컴포넌트로
+              나눴습니다. 공통 표시는 `UI_PurchaseCardBase`로 묶고, 실제 구매 동작은 Soft, Box,
+              Random, Gacha, IAP 버튼이 각자 담당하게 했습니다.
+            </p>
+            <ul>
+              <li>`UI_PurchaseCardBase`로 가격, 아이콘, 상품명, 구매 가능 수량, 매진 상태 표시 공통화</li>
+              <li>`UI_SoftBuyButton`, `UI_BoxBuyButton`, `UI_RandomProductButton`, `UI_GachaBuyButton`로 역할 분리</li>
+              <li>구매 완료 후 `OnPurchased` 이벤트로 캐러셀 이동, 상태 갱신, 구매 제한 반영을 연결</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>03</span>
+              <div>
+                <p class="project-period">2026.06</p>
+                <h3>ScriptableObject Product Data</h3>
+              </div>
+            </div>
+            <p>
+              상품 구성이 코드와 프리팹에 직접 박히지 않도록 SO 기반 데이터로 분리했습니다.
+              Soft 상품, Box 상품, Random Pool, Gacha 상품, Monthly Pass 상품을 각각 데이터로 만들고,
+              UI는 enum id와 서비스만 보고 상품을 로드합니다.
+            </p>
+            <ul>
+              <li>`SoftProductSO`, `BoxProductSO`, `GachaProductSO`, `MonthlyPassProductSO`로 상품 데이터 분리</li>
+              <li>보상 지급은 `RewardResolver`를 통해 currency, weapon piece, selection box 같은 결과로 변환</li>
+              <li>구매 제한과 무료 지급 카운트는 `ShopMetaAkiv`와 `PurchaseLimitTracker`로 관리</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>04</span>
+              <div>
+                <p class="project-period">2026.06</p>
+                <h3>Tutorial Flow System</h3>
+              </div>
+            </div>
+            <p>
+              로비 튜토리얼을 단일 절차 코드가 아니라 flow와 step 조합으로 나눴습니다.
+              캐릭터 탭, 무기 탭, 챕터 보상, 난이도 안내 같은 흐름을 우선순위와 완료 상태에 따라
+              자동 시작하고, 중간 단계는 저장해서 이어갈 수 있게 구성했습니다.
+            </p>
+            <ul>
+              <li>`TutorialService`에서 등록된 flow를 우선순위와 eligibility 기준으로 실행</li>
+              <li>`ProgressMarkerStep`으로 현재 step을 저장하고 완료 시 `TutorialAkiv`에 기록</li>
+              <li>`TutorialLobbyWiring`에서 로비 탭 전환, 팝업 오픈, 버튼 highlight, 보상 지급을 연결</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>05</span>
+              <div>
+                <p class="project-period">2026.06</p>
+                <h3>Red Dot System</h3>
+              </div>
+            </div>
+            <p>
+              로비 탭마다 조건을 직접 확인하던 방식을 provider 기반 Red Dot 시스템으로 정리했습니다.
+              무기 강화, 캐릭터 강화, 스테이지 보상, 상점 무료 보상처럼 서로 다른 조건을 같은 서비스에서
+              조회하고, 상위 탭은 하위 조건을 합성해 표시합니다.
+            </p>
+            <ul>
+              <li>`IRedDotConditionProvider` 단위로 알림 조건 분리</li>
+              <li>`RedDotService`에서 개별 조건과 composite key를 함께 처리</li>
+              <li>`RegisterRedDots()` 확장 메서드로 로비 스코프 등록을 한 곳에 모음</li>
+            </ul>
+          </article>
+
+          <article class="case-block">
+            <div class="case-block-heading">
+              <span>06</span>
+              <div>
+                <p class="project-period">2026.06</p>
+                <h3>Legendary Gacha / Monthly Pass</h3>
+              </div>
+            </div>
+            <p>
+              전설 뽑기와 월간 패스는 단순 팝업이 아니라 상태, 보장 카운트, 상품 가격, 일일 보상,
+              선택 보상, 서버 시간 기준 갱신이 필요한 기능이었습니다. UI는 서비스 상태를 구독하고,
+              실제 보상 지급은 데이터 서비스와 결제 서비스를 통해 처리하도록 구성했습니다.
+            </p>
+            <ul>
+              <li>`LegendaryGachaService`에서 pickup, pity, rate info, key purchase, selection reward 처리</li>
+              <li>`MonthlyPassService`에서 IAP 가격, 구매 완료, 남은 기간, 일일 보상, 서버 시간 캐시 관리</li>
+              <li>각 기능의 상품 데이터는 SO로 분리해 밸런스와 UI 변경 비용을 낮춤</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="media" class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Lobby Screens</p>
+          <h2>Shop, red dot, tutorial, gacha, and monthly pass</h2>
+        </div>
+        <div class="media-grid media-grid-large">
+          <figure>
+            <img src="../assets/screenshots/toycommando/shop-red-dot.png" alt="Toy Commando shop product screen with red dot notification">
+            <figcaption>Shop / Red Dot</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/screenshots/toycommando/tutorial-upgrade.png" alt="Toy Commando tutorial overlay guiding weapon upgrade">
+            <figcaption>Tutorial Flow</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/screenshots/toycommando/legendary-treasure-chest.png" alt="Toy Commando Legendary Treasure Chest gacha screen">
+            <figcaption>Legendary Treasure Chest</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/screenshots/toycommando/vip-monthly-pass.png" alt="Toy Commando VIP Monthly Pass shop screen">
+            <figcaption>VIP Monthly Pass</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="evolution" class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Feature Evolution</p>
+          <h2>기존 구현을 컨벤션에 맞는 로비 시스템으로 발전시켰습니다.</h2>
+        </div>
+        <div class="case-grid">
+          <article>
+            <h3>Before</h3>
+            <p>
+              로비 상품, 랜덤 상품, 무료 보상, 가챠, 튜토리얼이 각각 다른 방식으로 프리팹과 코드에 연결되어 있었습니다.
+              같은 구매 버튼처럼 보여도 가격 표시, 보상 지급, 구매 제한, 매진 상태를 처리하는 기준이 흩어져 있었습니다.
+            </p>
+          </article>
+          <article>
+            <h3>After</h3>
+            <p>
+              UI는 공통 구매 카드 베이스를 사용하고, 상품 종류별 버튼은 SO와 서비스만 바라보도록 분리했습니다.
+              로비 기능은 VContainer 스코프에 등록된 VM/Service를 통해 연결해, 프리팹 변경과 기능 변경의 경계를 나눴습니다.
+            </p>
+          </article>
+          <article>
+            <h3>Convention</h3>
+            <p>
+              새 기능을 만들 때 MonoBehaviour 싱글톤이나 직접 탐색에 기대기보다, `LifetimeScope` 등록,
+              `[Inject]` 의존성, VM 이벤트, 서비스 메서드 호출 흐름에 맞추는 것을 우선했습니다.
+            </p>
+          </article>
+          <article>
+            <h3>Tradeoff</h3>
+            <p>
+              기존 프리팹을 빠르게 살리는 것보다 초반 수정량은 늘었지만, 이후 상품 추가, 튜토리얼 추가,
+              레드닷 조건 추가가 같은 패턴으로 반복될 수 있게 되었습니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="workflow" class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Workflow</p>
+          <h2>기존 로비 코드를 분석하며 프로젝트 컨벤션에 맞춰 작업했습니다.</h2>
+        </div>
+        <div class="case-grid">
+          <article>
+            <h3>Code Discovery</h3>
+            <p>
+              Toy Commando는 다른 작업자가 만든 로비 코드를 이어받은 프로젝트였기 때문에,
+              먼저 기능 위치와 의존성 흐름을 파악하는 데 시간을 썼습니다. 상점, 상품 데이터,
+              튜토리얼, Red Dot, 가챠, 월간 패스 관련 코드를 기능 단위로 모아 구조를 확인했습니다.
+            </p>
+          </article>
+          <article>
+            <h3>AI-Assisted Reading</h3>
+            <p>
+              AI는 코드 탐색과 이해 보조에 많이 활용했습니다. “이 기능이 어디에 흩어져 있는지”,
+              “이 버튼이 어떤 서비스와 연결되는지”, “관련 클래스를 기능별로 묶으면 어떤 흐름인지”를
+              확인하며 리팩토링 범위를 정리했습니다.
+            </p>
+          </article>
+          <article>
+            <h3>VContainer Learning</h3>
+            <p>
+              VContainer 경험이 많지 않은 상태였기 때문에 LifetimeScope, 등록 순서, service/VM 주입,
+              popup resolver 흐름을 확인하며 작업했습니다. 새 기능은 기존 컨벤션을 깨지 않도록
+              로비 스코프 등록과 의존성 주입 방식에 맞췄습니다.
+            </p>
+          </article>
+          <article>
+            <h3>Refactoring Boundary</h3>
+            <p>
+              기존 기능을 전부 다시 만들기보다, 화면에 붙어 있던 로직을 공통 UI 컴포넌트,
+              ScriptableObject 데이터, service, ViewModel 흐름으로 옮기는 데 집중했습니다.
+              그래서 기능 동작은 유지하면서 이후 상품과 알림 조건을 같은 패턴으로 추가할 수 있게 정리했습니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="scope" class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">Implementation Scope</p>
+          <h2>구현 범위</h2>
+        </div>
+        <div class="evidence-grid">
+          <article>
+            <h3>Lobby Architecture</h3>
+            <p>Lobby lifetime scope, VM registration, service registration, scoped resolver usage</p>
+          </article>
+          <article>
+            <h3>Shop UI</h3>
+            <p>Purchase card base, soft product button, box button, random product button, carousel flow</p>
+          </article>
+          <article>
+            <h3>Product Data</h3>
+            <p>SoftProductSO, BoxProductSO, GachaProductSO, MonthlyPassProductSO, reward resolver</p>
+          </article>
+          <article>
+            <h3>Tutorial</h3>
+            <p>Flow registration, step persistence, lobby wiring, popup watcher, highlight click steps</p>
+          </article>
+          <article>
+            <h3>Red Dot</h3>
+            <p>Condition providers, composite keys, tab-level notifications, VContainer registration</p>
+          </article>
+          <article>
+            <h3>Live Products</h3>
+            <p>Legendary gacha, monthly pass, IAP price sync, daily claim, pity count, selectable rewards</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="section-heading">
+          <p class="eyebrow">What This Shows</p>
+          <h2>Unity 클라이언트 개발자로서 보여주는 역량</h2>
+        </div>
+        <div class="impact-list">
+          <p>다른 작업자가 남긴 기능을 무작정 다시 만들지 않고, 기존 프로젝트의 아키텍처와 컨벤션을 따라 정리할 수 있습니다.</p>
+          <p>프리팹 중심의 UI 구현을 데이터, 서비스, VM, 공통 컴포넌트로 나눠 유지보수 가능한 구조로 바꿀 수 있습니다.</p>
+          <p>상점, 튜토리얼, 레드닷, 가챠, 월간 패스처럼 로비에 얽힌 기능을 하나의 사용자 흐름으로 연결할 수 있습니다.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

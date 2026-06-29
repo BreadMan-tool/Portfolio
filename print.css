@@ -1,0 +1,96 @@
+@page {
+  size: A4;
+  margin: 14mm;
+}
+
+body {
+  background: #fff;
+  color: #111827;
+  font-size: 11pt;
+}
+
+.topbar,
+.hero-actions,
+.contact-strip,
+.project-media {
+  display: none;
+}
+
+main {
+  width: 100%;
+}
+
+.hero,
+.case-meta,
+.split-copy,
+.case-stack,
+.evidence-grid,
+.project-card,
+.evidence-strip,
+.work-list,
+.case-grid,
+.contact-grid,
+.timeline-grid,
+.metrics-list {
+  display: block;
+}
+
+.hero {
+  min-height: auto;
+  padding: 0 0 12mm;
+}
+
+.hero-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4mm;
+  margin-top: 8mm;
+}
+
+h1 {
+  font-size: 28pt;
+}
+
+h2 {
+  font-size: 18pt;
+}
+
+h3 {
+  font-size: 13pt;
+}
+
+section {
+  padding: 8mm 0;
+  break-inside: avoid;
+}
+
+.print-cover {
+  padding: 0 0 8mm;
+}
+
+.print-cover h1 {
+  font-size: 34pt;
+}
+
+.project-card {
+  padding: 6mm 0;
+  break-inside: avoid;
+}
+
+.case-block,
+.case-grid article,
+.evidence-grid article,
+.work-list article,
+.metrics-list > div,
+.contact-grid > div,
+.timeline-grid article,
+.case-meta > div,
+.hero-panel > div {
+  border: 1px solid #d1d5db;
+  padding: 4mm;
+  margin-bottom: 4mm;
+}
+
+.pill-grid span {
+  border: 1px solid #d1d5db;
+}

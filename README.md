@@ -11,6 +11,7 @@ PDF export, and Notion archive.
 - `docs/capture-list.md`: screenshots and video clips to record
 - `docs/private-info-checklist.md`: things to remove or anonymize
 - `docs/project-inventory.md`: project notes and case-study source material
+- `docs/resume-draft.md`: resume-ready Korean career summary and bullets
 
 ## Workflow
 

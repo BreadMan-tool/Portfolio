@@ -690,6 +690,92 @@ code {
   font-size: clamp(58px, 10vw, 104px);
 }
 
+.resume-main {
+  width: min(960px, calc(100% - 40px));
+}
+
+.resume-cover {
+  padding: 64px 0 34px;
+  border-bottom: 1px solid var(--line);
+}
+
+.resume-title-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 0.34fr);
+  gap: 32px;
+  align-items: end;
+}
+
+.resume-contact {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.resume-section {
+  padding: 34px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.resume-section-title {
+  margin-bottom: 18px;
+}
+
+.resume-section > p {
+  max-width: 880px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.resume-entry,
+.resume-project-list article,
+.resume-skill-grid > div {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.resume-entry + .resume-entry {
+  margin-top: 14px;
+}
+
+.resume-entry.compact p,
+.resume-project-list p,
+.resume-skill-grid p,
+.resume-entry-head p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.resume-entry-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.resume-entry-head span {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.resume-project-list,
+.resume-skill-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.resume-skill-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 @media (max-width: 820px) {
   .topbar {
     align-items: flex-start;
@@ -725,6 +811,7 @@ code {
   }
 
   .hero,
+  .resume-title-row,
   .project-card,
   .case-meta,
   .split-copy,
@@ -737,6 +824,19 @@ code {
   .timeline-grid,
   .metrics-list {
     grid-template-columns: 1fr;
+  }
+
+  .resume-contact {
+    text-align: left;
+  }
+
+  .resume-entry-head {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .resume-entry-head span {
+    white-space: normal;
   }
 
   .media-grid {

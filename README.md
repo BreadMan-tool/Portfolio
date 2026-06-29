@@ -6,6 +6,7 @@ PDF export, and Notion archive.
 ## Files
 
 - `index.html`: public portfolio page
+- `resume.html`: resume page for browser PDF export
 - `styles.css`: screen styles
 - `print.css`: PDF/print styles
 - `docs/capture-list.md`: screenshots and video clips to record

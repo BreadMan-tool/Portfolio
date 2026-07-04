@@ -311,7 +311,7 @@
               분석 이벤트와 UI 연출을 하나의 콘텐츠 흐름으로 구성했습니다.
             </p>
             <ul>
-              <li>퍼즐별 셀 배치를 64bit bitmask로 저장해 진행 상태를 가볍게 관리</li>
+              <li>퍼즐 진행 상태를 비트로 압축해 가볍게 저장</li>
               <li>스케줄 종료 후 남은 조각 정산, 보상 수령 여부, 종료 dismiss 상태 처리</li>
               <li>ConfigSO와 Editor로 퍼즐 크기, 배경, 컨셉, 보상 조합을 데이터화</li>
             </ul>
@@ -498,7 +498,7 @@
           </article>
           <article>
             <h3>Analytics / SDK</h3>
-            <p>Firebase, ThinkingData, Singular, GameAnalytics routing, event constants, parameter normalization</p>
+            <p>여러 SDK(Firebase·ThinkingData·Singular·GameAnalytics)로 이벤트 전송, 이벤트 이름 상수화, 파라미터 정리</p>
           </article>
           <article>
             <h3>Cloud Save</h3>

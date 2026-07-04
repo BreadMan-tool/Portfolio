@@ -120,9 +120,8 @@
               </div>
             </div>
             <p>
-              광물, 플레이어, 동료, 펫을 단일 MonoBehaviour 로직에 두지 않고 Model과 View로 나눴습니다.
-              게임 상태와 표시 오브젝트의 책임을 분리해 밸런스 계산, 타겟 판정, Spine 표시, 풀링 반환을
-              각 레이어에서 처리할 수 있게 만들었습니다.
+              광물·플레이어·동료·펫을 한 스크립트에 다 넣지 않고 데이터(상태)와 화면(표시)을 나눴습니다.
+              밸런스 계산·타겟 판정은 데이터 쪽에서, 캐릭터 표시·재사용은 화면 쪽에서 처리하게 했습니다.
             </p>
             <ul>
               <li>`MineralModel`, `PlayerModel`, `CompanionModel`로 런타임 상태와 계산 로직 분리</li>
@@ -140,9 +139,8 @@
               </div>
             </div>
             <p>
-              무기 공격과 연출을 위해 투사체 예약, 활성 투사체 Tick, 강제 정리, 충돌 판정을 담당하는
-              시스템을 만들었습니다. 많은 광물을 대상으로 하는 범위/라인 판정은 공간 그리드로 후보를
-              줄여 반복 계산 비용을 낮췄습니다.
+              무기 공격과 연출을 위해 투사체 발사·정리·충돌 판정을 담당하는 시스템을 만들었습니다.
+              광물이 많을 때는 화면을 격자로 나눠 가까운 대상만 검사해 계산 비용을 낮췄습니다.
             </p>
             <ul>
               <li>`ProjectileSystem`에서 delayed fire, active list, scheduled list, scene 하위 정리 처리</li>
@@ -225,9 +223,9 @@
             새 프로젝트마다 같은 패턴을 다시 만들고 SDK별 예외 처리를 반복해야 했습니다.
           </p>
           <p>
-            Breadmore Core는 이 경험을 바탕으로 만든 UPM 패키지 모음입니다. 게임 코드는 static facade만 호출하고,
-            실제 SDK와 저장소는 provider로 교체할 수 있게 분리했습니다. 깡깡냥에서는 이 구조를 프로젝트 시작부터 적용해
-            부트, 저장, 리소스, IAP, UI, Analytics, Ads를 같은 규칙으로 연결했습니다.
+            Breadmore Core는 이 경험을 바탕으로 만든 재사용 패키지 모음입니다. 게임 코드는 간단한 진입점만 호출하고,
+            실제 SDK·저장소는 구현만 갈아끼우도록 분리했습니다. 깡깡냥에서는 이 구조를 프로젝트 시작부터 적용해
+            부팅·저장·리소스·IAP·UI·분석·광고를 같은 규칙으로 연결했습니다.
           </p>
         </div>
 
@@ -242,16 +240,16 @@
           <article>
             <h3>깡깡냥 + Breadmore Core</h3>
             <p>
-              `BootStep`, `Save`, `IAP`, `Analytics`, `Scenes`, `Resource`, `UI` 같은 facade를 먼저 두고,
-              실제 구현은 provider와 게임별 adapter로 연결했습니다. 기능 코드는 SDK보다 게임 상태에 집중합니다.
+              `Boot`, `Save`, `IAP` 같은 간단한 진입점을 먼저 두고, 실제 구현은 갈아끼우는 부분과
+              게임별 연결 코드로 붙였습니다. 기능 코드는 SDK 대신 게임 로직에 집중합니다.
             </p>
           </article>
         </div>
 
         <div class="code-showcase">
           <article>
-            <h3>Ordered Boot Steps</h3>
-            <p>게임별 초기화 순서를 클래스 단위로 분리하고, 로딩 UI가 진행도를 구독할 수 있게 만든 구조입니다.</p>
+            <h3>부팅 순서 나누기</h3>
+            <p>게임 시작에 필요한 초기화를 단계별 클래스로 나누고, 로딩 화면이 진행도를 받아볼 수 있게 했습니다.</p>
             <pre><code>[BootStep(15)]
 public class GameDataBootStep : BootStep
 {
@@ -266,8 +264,8 @@ await Boot.RunAsync();</code></pre>
           </article>
 
           <article>
-            <h3>Observable Save Data</h3>
-            <p>빠지냥에서 PlayerPrefs/기능별 저장으로 흩어지던 값을 typed document와 observable field로 모았습니다.</p>
+            <h3>저장 데이터 한곳에 모으기</h3>
+            <p>여기저기 흩어져 저장하던 값을 한 클래스에 모으고, 값이 바뀌면 알림이 오도록 했습니다.</p>
             <pre><code>public sealed class PlayerData : SaveData
 {
     public SaveValue&lt;long&gt; Gold = new();
@@ -280,8 +278,8 @@ Save.SaveAll();</code></pre>
           </article>
 
           <article>
-            <h3>Provider-Based IAP</h3>
-            <p>에디터에서는 Dummy provider, 실제 빌드에서는 Unity Purchasing provider를 연결해 같은 Store 코드로 처리합니다.</p>
+            <h3>결제 구현 갈아끼우기</h3>
+            <p>개발 중엔 더미, 실제 빌드엔 Unity Purchasing으로 바꿔 연결해 같은 상점 코드로 처리합니다.</p>
             <pre><code>#if UNITY_EDITOR || MINECAT_DUMMY_IAP
 IAP.SetProvider(DummyIAPProvider.Create(Store.IapProducts()));
 #else
@@ -310,8 +308,8 @@ IAP.Initialize();</code></pre>
           <article>
             <h3>Reusable Foundation</h3>
             <p>
-              기능 코드가 Firebase, IAP, 로딩 UI를 직접 붙잡는 대신 facade와 provider를 통과하게 만들었습니다.
-              같은 게임 로직으로 dummy provider, Unity Purchasing, SDK adapter를 교체할 수 있습니다.
+              기능 코드가 Firebase·IAP·로딩 UI를 직접 붙잡지 않고 공통 진입점을 거치게 했습니다.
+              같은 게임 로직에서 더미 구현과 실제 SDK 구현을 바꿔 끼울 수 있습니다.
             </p>
           </article>
           <article>

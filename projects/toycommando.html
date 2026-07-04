@@ -157,14 +157,13 @@
               </div>
             </div>
             <p>
-              로비 튜토리얼을 단일 절차 코드가 아니라 flow와 step 조합으로 나눴습니다.
-              캐릭터 탭, 무기 탭, 챕터 보상, 난이도 안내 같은 흐름을 우선순위와 완료 상태에 따라
-              자동 시작하고, 중간 단계는 저장해서 이어갈 수 있게 구성했습니다.
+              로비 튜토리얼을 단계별로 나눠, 캐릭터 탭·무기 탭·챕터 보상·난이도 안내 같은 흐름을
+              조건에 따라 자동으로 시작하고, 중간 단계는 저장해 이어갈 수 있게 만들었습니다.
             </p>
             <ul>
-              <li>`TutorialService`에서 등록된 flow를 우선순위와 eligibility 기준으로 실행</li>
-              <li>`ProgressMarkerStep`으로 현재 step을 저장하고 완료 시 `TutorialAkiv`에 기록</li>
-              <li>`TutorialLobbyWiring`에서 로비 탭 전환, 팝업 오픈, 버튼 highlight, 보상 지급을 연결</li>
+              <li>등록된 튜토리얼을 우선순위와 시작 조건에 따라 자동 실행</li>
+              <li>진행 단계를 저장하고, 완료되면 기록해 다시 뜨지 않게 처리</li>
+              <li>로비 탭 전환·팝업 열기·버튼 강조·보상 지급을 튜토리얼 단계에 연결</li>
             </ul>
           </article>
 
@@ -183,7 +182,7 @@
             </p>
             <ul>
               <li>`IRedDotConditionProvider` 단위로 알림 조건 분리</li>
-              <li>`RedDotService`에서 개별 조건과 composite key를 함께 처리</li>
+              <li>`RedDotService`에서 개별 조건과 상위 탭(하위 항목 묶음)을 함께 처리</li>
               <li>`RegisterRedDots()` 확장 메서드로 로비 스코프 등록을 한 곳에 모음</li>
             </ul>
           </article>
@@ -258,8 +257,8 @@
           <article>
             <h3>Convention</h3>
             <p>
-              새 기능을 만들 때 MonoBehaviour 싱글톤이나 직접 탐색에 기대기보다, `LifetimeScope` 등록,
-              `[Inject]` 의존성, VM 이벤트, 서비스 메서드 호출 흐름에 맞추는 것을 우선했습니다.
+              새 기능을 만들 때 전역 싱글톤이나 직접 찾기에 기대지 않고,
+              필요한 객체를 주입받아 쓰는 기존 방식(VContainer)에 맞췄습니다.
             </p>
           </article>
           <article>
@@ -325,19 +324,19 @@
           </article>
           <article>
             <h3>Shop UI</h3>
-            <p>Purchase card base, soft product button, box button, random product button, carousel flow</p>
+            <p>공통 구매 카드, 상품 종류별 버튼(Soft·Box·랜덤·가챠), 상품 넘김 흐름</p>
           </article>
           <article>
             <h3>Product Data</h3>
-            <p>SoftProductSO, BoxProductSO, GachaProductSO, MonthlyPassProductSO, reward resolver</p>
+            <p>상품 데이터(Soft·Box·Gacha·MonthlyPass SO), 보상 지급 변환</p>
           </article>
           <article>
             <h3>Tutorial</h3>
-            <p>Flow registration, step persistence, lobby wiring, popup watcher, highlight click steps</p>
+            <p>튜토리얼 단계 등록·저장, 로비 연결, 팝업 열림 감지, 버튼 강조 클릭 단계</p>
           </article>
           <article>
             <h3>Red Dot</h3>
-            <p>Condition providers, composite keys, tab-level notifications, VContainer registration</p>
+            <p>알림 조건 클래스, 상위 탭 묶음 처리, 탭별 알림 표시, VContainer 등록</p>
           </article>
           <article>
             <h3>Live Products</h3>

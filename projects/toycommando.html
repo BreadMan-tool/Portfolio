@@ -41,8 +41,8 @@
         <p class="eyebrow">Project / Unity Lobby Systems</p>
         <h1>장난EZ렁</h1>
         <p class="lead">
-          기존 로비 구현을 인수한 뒤 VContainer 기반 프로젝트 컨벤션에 맞춰 상점 상품 버튼,
-          ScriptableObject 상품 데이터, 튜토리얼 플로우, Red Dot, 월간 패스와 전설 뽑기 UI를 정리했습니다.
+          이미 출시된 게임의 로비에 RedDot 알림, 전설 가챠, 월간 패스, 튜토리얼을 신규 구현하고
+          상점 UI를 확장했습니다. 로비 기반 DI/VM 구조는 다른 개발자들이 만든 것 위에서 작업했습니다.
         </p>
         <div class="case-meta">
           <div>
@@ -55,11 +55,11 @@
           </div>
           <div>
             <span class="label">Focus</span>
-            <strong>Lobby / UI / Refactoring</strong>
+            <strong>Lobby Features / Shop</strong>
           </div>
           <div>
-            <span class="label">Architecture</span>
-            <strong>VContainer / SO / VM</strong>
+            <span class="label">New Work</span>
+            <strong>RedDot / Gacha / Pass</strong>
           </div>
         </div>
       </section>
@@ -67,18 +67,17 @@
       <section class="case-section">
         <div class="section-heading">
           <p class="eyebrow">Project Context</p>
-          <h2>기존 로비 코드를 프로젝트 아키텍처에 맞춰 다시 배치했습니다.</h2>
+          <h2>이미 출시된 로비에 신규 기능을 얹고 상점을 확장했습니다.</h2>
         </div>
         <div class="split-copy">
           <p>
-            장난EZ렁은 기존 프로젝트의 로비 작업을 이어받은 케이스입니다. 저는 로비 상점,
-            상품 버튼, 튜토리얼, 레드닷, 가챠/월간 패스 기능을 기존 코드 컨벤션과
-            VContainer 흐름에 맞게 정리했습니다.
+            장난EZ렁은 이미 출시된 게임의 로비에 신규 기능을 추가한 작업입니다.
+            로비의 기반 구조(DI 조립·VM·정책)는 다른 개발자들이 만든 상태였고,
+            저는 그 위에 RedDot·전설 가챠·월간 패스·튜토리얼을 신규 구현했습니다.
           </p>
           <p>
-            핵심은 기능을 새로 붙이는 것보다, 화면 프리팹에 흩어진 로직을 서비스, ViewModel,
-            ScriptableObject 데이터, 재사용 가능한 UI 컴포넌트로 분리하는 것이었습니다.
-            로비 스코프에서 필요한 의존성을 주입받고, 상품/보상/제한/알림 상태를 같은 패턴으로 처리했습니다.
+            특히 RedDot 알림 시스템(provider + DI 집계), 전설 가챠, 월간 패스는 처음부터 단독으로 설계·구현했고,
+            기존 상점 UI(UI_LobbyShop)는 인수해 상품 종류별 버튼과 ScriptableObject 데이터로 확장했습니다.
           </p>
         </div>
       </section>
@@ -95,18 +94,17 @@
               <span>01</span>
               <div>
                 <p class="project-period">2026.06</p>
-                <h3>Lobby Scope Refactoring</h3>
+                <h3>내 기능의 로비 스코프 등록</h3>
               </div>
             </div>
             <p>
-              로비 탭, 상점, 팝업, 튜토리얼이 같은 화면에서 얽혀 있었기 때문에 먼저 로비 스코프의
-              등록 흐름을 정리했습니다. 기능별 서비스와 VM을 `LobbyLifetimeScope`에 등록하고,
-              UI는 필요한 의존성을 주입받아 동작하도록 맞췄습니다.
+              로비의 DI 스코프(`LobbyLifetimeScope`) 자체는 다른 개발자가 만든 것이고,
+              저는 제가 추가한 서비스(RedDot·가챠 등)를 그 스코프에 등록해 기존 DI 흐름에 편입시켰습니다.
             </p>
             <ul>
-              <li>`LobbyHudVM`, `LobbyNavVM`, `LobbyShopVM`, `LobbyWeaponVM`, `LobbyChaVM` 등 로비 VM 흐름 유지</li>
-              <li>`ShopRandomProductService`, `SoftRandomPoolService`, `LegendaryGachaService`, `RedDotService`를 로비 스코프로 사용</li>
-              <li>팝업과 자식 UI가 로비 스코프 의존성을 받을 수 있도록 resolver 전달 경로 정리</li>
+              <li>기존 로비 VM 흐름(`LobbyShopVM` 등)은 유지하고 그 위에서 작업</li>
+              <li>내가 만든 `LegendaryGachaService`, `RedDotService`, `ShopRandomProductService`를 로비 스코프에 등록</li>
+              <li>`RegisterRedDots()` 확장 메서드로 RedDot provider 등록을 한 곳에 모음</li>
             </ul>
           </article>
 
@@ -322,8 +320,8 @@
         </div>
         <div class="evidence-grid">
           <article>
-            <h3>Lobby Architecture</h3>
-            <p>Lobby lifetime scope, VM registration, service registration, scoped resolver usage</p>
+            <h3>My Services in Scope</h3>
+            <p>RedDot / Gacha / random-product services registered into the existing lobby scope</p>
           </article>
           <article>
             <h3>Shop UI</h3>
@@ -351,12 +349,12 @@
       <section class="case-section">
         <div class="section-heading">
           <p class="eyebrow">Client Impact</p>
-          <h2>인수한 로비 코드를 프로젝트 컨벤션에 맞춰 재구성했습니다.</h2>
+          <h2>출시된 로비에 신규 기능을 구현하고 상점을 확장했습니다.</h2>
         </div>
         <div class="impact-list">
-          <p>다른 작업자가 남긴 기능을 유지하면서 기존 프로젝트의 아키텍처와 컨벤션에 맞게 정리했습니다.</p>
-          <p>프리팹 중심의 UI 구현을 데이터, 서비스, VM, 공통 컴포넌트로 나눠 유지보수 가능한 구조로 바꿨습니다.</p>
-          <p>상점, 튜토리얼, 레드닷, 가챠, 월간 패스처럼 로비에 얽힌 기능을 하나의 사용자 흐름으로 연결했습니다.</p>
+          <p>RedDot 알림 시스템 · 전설 가챠 · 월간 패스 · 튜토리얼을 처음부터 단독 설계·구현했습니다.</p>
+          <p>기존 상점 UI를 인수해 상품 종류별 버튼과 ScriptableObject 데이터로 확장했습니다.</p>
+          <p>로비 기반 DI/VM 구조는 다른 개발자 작업이며, 저는 그 위에서 기능을 얹는 역할을 맡았습니다.</p>
         </div>
       </section>
     </main>

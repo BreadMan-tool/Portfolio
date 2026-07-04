@@ -183,9 +183,9 @@
               </div>
             </div>
             <p>
-              Firebase, ThinkingData, Singular, GameAnalytics 이벤트를 기능 코드에 흩뿌리지 않고
-              공통 라우터에서 관리했습니다. 기능 코드는 콘텐츠 상태 변화만 명확히 호출하고,
-              SDK별 발사 대상은 `TrackNetwork` 플래그로 선택합니다.
+              공통 이벤트 라우터(`EventManager`) 자체는 코어에 있었고, 저는 제가 만든 LiveOps 콘텐츠들의
+              이벤트 정의·파라미터 정규화·SDK별 라우팅 처리를 확장했습니다.
+              기능 코드는 콘텐츠 상태 변화만 호출하고, SDK별 발사 대상은 `TrackNetwork` 플래그로 선택합니다.
             </p>
             <ul>
               <li>`EventDef`로 이벤트명 상수화</li>

@@ -98,17 +98,17 @@
         <article class="proj-band reverse">
           <div class="proj-text">
             <p class="project-period">ActionFit · 2026.06 – 진행 중</p>
-            <h3>장난EZ렁 <span>Lobby Features</span></h3>
-            <p class="proj-role">로비 신규 기능 · 상점 확장</p>
+            <h3>장난EZ렁 <span>Refactor · VContainer</span></h3>
+            <p class="proj-role">상점 UI 리팩토링 · VContainer 경험</p>
             <p>
-              이미 출시된 로비에 RedDot 알림, 전설 가챠, 월간 패스, 튜토리얼을
-              신규 구현하고 상점 UI를 확장했습니다.
-              로비 기반 DI/VM 구조는 다른 개발자가 만든 것 위에서 작업했습니다.
+              기존 로비를 인수해 상점 UI를 리팩토링하고 VContainer(DI)를 익히며,
+              RedDot·전설 가챠·월간 패스·튜토리얼을 추가했습니다.
+              로비 기반 DI/VM 구조는 다른 개발자 작업입니다.
             </p>
             <ul class="proj-highlights">
-              <li>RedDot 알림 시스템 신규 설계 (provider + DI 집계, OCP)</li>
-              <li>전설 가챠 · 월간 패스 구독 신규 구현</li>
-              <li>튜토리얼 온보딩 플로우 + 상점 UI 확장</li>
+              <li>기존 상점 UI(UI_LobbyShop) 인수·리팩토링</li>
+              <li>VContainer(DI) 구조 학습·적용</li>
+              <li>RedDot·전설 가챠·월간 패스·튜토리얼 신규 구현</li>
             </ul>
             <a class="button primary" href="projects/toycommando.html">케이스 스터디 &rarr;</a>
           </div>
@@ -123,12 +123,12 @@
         <article class="proj-band code-band">
           <div class="proj-text">
             <p class="project-period">ActionFit · 신규 개발</p>
-            <h3>깡깡냥 <span>from scratch</span></h3>
-            <p class="proj-role">프로젝트 생성부터 단독 구축 · Breadmore Core 기반</p>
+            <h3>깡깡냥 <span>core package + 첫 메인</span></h3>
+            <p class="proj-role">코어 패키지 결합 · 첫 메인 프로젝트 (개발 중)</p>
             <p>
-              프로젝트 생성 단계부터 클라이언트 구조, 게임플레이, UI/HUD, 데이터 테이블,
-              투사체 시스템, 상점/IAP까지 직접 개발했습니다. 빠지냥에서 반복하던 라이브 기능을
-              직접 설계한 Breadmore Core 재사용 패키지 기반 구조로 옮겼습니다.
+              그동안 반복해 만들던 공통 기술(세이브·부팅·UI·재화·광고·IAP)을
+              Breadmore Core(26 UPM) 패키지로 결합하고, 이를 첫 메인 프로젝트로
+              직접 적용하며 개발 중입니다.
             </p>
           </div>
           <div class="arch-panel" aria-label="깡깡냥 아키텍처">
